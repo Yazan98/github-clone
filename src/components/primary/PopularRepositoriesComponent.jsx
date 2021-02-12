@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {getPopularRepositories} from "../info/AxiosManager";
 import '../styles/popular_repos.scss';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -6,13 +6,18 @@ import {RepositoryModelResponse} from "../info/ModelsResponse";
 import {RepositoryCardComponent} from "./RepositoryCardComponent";
 import GridImage from '../images/menu.svg';
 import LinearImage from '../images/list-text.svg';
+import {PageNumberComponent} from "../shared/PageNumberComponent";
 
 export const PopularRepositoriesComponent = () => {
-    const [repositories, setRepositories] = useState([RepositoryModelResponse]);
+    const [repositories, setRepositories] = useState([RepositoryModelResponse] | undefined);
     const [pageNumber, updatePageNumber] = useState(1);
     const [loadingState, updateLoadingState] = useState(false);
     const [errorListener, updateErrorListener] = useState("");
     const [isLinearListStyle, updateListStyle] = useState(true);
+    const onPageClickCallback = useCallback((numberOfPage) => {
+        setRepositories(null)
+        updatePageNumber(numberOfPage)
+    }, [pageNumber])
 
     useEffect(() => {
         async function fetchPopularPosts() {
@@ -32,7 +37,7 @@ export const PopularRepositoriesComponent = () => {
         }
 
         fetchPopularPosts();
-    }, [])
+    }, [pageNumber])
 
     return (
         <div className={"popular-repos-container"}>
@@ -48,7 +53,7 @@ export const PopularRepositoriesComponent = () => {
             </div>
             {loadingState ? getLoadingContainer() : null}
             <div className={isLinearListStyle ? "linear" : "grid-list"}>
-                {repositories.map((item, index) => {
+                {repositories ? repositories.map((item, index) => {
                     return (
                         <RepositoryCardComponent
                             key={index}
@@ -65,8 +70,10 @@ export const PopularRepositoriesComponent = () => {
                             isLinearLayout={isLinearListStyle}
                         />
                     );
-                })}
+                }) : null}
             </div>
+
+            {getPagesView(onPageClickCallback)}
         </div>
     );
 }
@@ -75,6 +82,21 @@ export function getLoadingContainer() {
     return (
         <div className={"loading-container"}>
             <CircularProgress color={"inherit"}/>
+        </div>
+    );
+}
+
+export function getPagesView(onPageClickFunction) {
+    const pagesItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    return (
+        <div className={"pages-container"}>
+            <div className={"items"}>
+                {pagesItems.map((item, index) => {
+                    return (
+                        <PageNumberComponent number={item} key={index} onClickCallback={onPageClickFunction} />
+                    );
+                })}
+            </div>
         </div>
     );
 }

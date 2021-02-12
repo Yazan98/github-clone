@@ -12,34 +12,36 @@ export const RepositoryCardComponent = ({name, fullName, ownerName, ownerImage, 
     return (
         <div className={"repo-container"} style={{width: widthSize + "vw"}}>
             <Paper className={"paper"}>
-                <div className={"owner-section"}>
-                    <div className={"content"}>
-                        <img src={ownerImage} alt={"Owner Image"} className={"owner-image"} />
-                        <div className={"texts"}>
-                            <h3 id={"text"}>{ownerName}</h3>
-                            <label id={"text"}>{fullName}</label>
-                        </div>
-                    </div>
-                    <div className={"links"}>
-                        <a id={"text"} href={ownerUrl} target="_blank"><img className={"icon"} src={ProfileImage} alt={"User Profile Link"} /></a>
-                        <a id={"text"} href={repoUrl} target="_blank"><img className={"icon"} src={RepoLinkIcon} alt={"Repo Link"} /></a>
-                    </div>
-                </div>
-                <h4>{name}</h4>
-                <p>{description}</p>
-                <div className={"language-container"}>
-                    <div className={"content"}>
-                        <div className={"color"} style={{ backgroundColor: getColorCodeByLanguage(language) }} />
-                        <label>{language}</label>
-                    </div>
-                    <div className={"watchers"}>
-                        <img src={VisionIcon} className={"icon"} alt={"Image Watch"}/>
-                        <label>{watchers}</label>
+               <div className={"paper-body"}>
+                   <div className={"owner-section"}>
+                       <div className={"content"}>
+                           <img src={ownerImage} alt={"Owner Image"} className={"owner-image"} />
+                           <div className={"texts"}>
+                               <h3 id={"text"}>{ownerName}</h3>
+                               <label id={"text"}>{fullName}</label>
+                           </div>
+                       </div>
+                       <div className={"links"}>
+                           <a id={"text"} href={ownerUrl} target="_blank"><img className={"icon"} src={ProfileImage} alt={"User Profile Link"} /></a>
+                           <a id={"text"} href={repoUrl} target="_blank"><img className={"icon"} src={RepoLinkIcon} alt={"Repo Link"} /></a>
+                       </div>
+                   </div>
+                   <h4>{name}</h4>
+                   <p className={"description"}>{description}</p>
+                   <div className={"language-container"}>
+                       <div className={"content"}>
+                           <div className={"color"} style={{ backgroundColor: getColorCodeByLanguage(language) }} />
+                           <label>{language}</label>
+                       </div>
+                       <div className={"watchers"}>
+                           <img src={VisionIcon} className={"icon"} alt={"Image Watch"}/>
+                           <label>{watchers}</label>
 
-                        <img id={"IssuesIcon"} src={ProblemImage} className={"icon"} alt={"Image Watch"}/>
-                        <label>{watchers}</label>
-                    </div>
-                </div>
+                           <img id={"IssuesIcon"} src={ProblemImage} className={"icon"} alt={"Image Watch"}/>
+                           <label>{issues}</label>
+                       </div>
+                   </div>
+               </div>
             </Paper>
         </div>
     );
