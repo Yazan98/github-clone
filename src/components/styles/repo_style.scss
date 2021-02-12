@@ -1,0 +1,23 @@
+.repo-container {
+  margin: 1em;
+  width: 30%;
+
+  .paper {
+    padding: 1em;
+
+    .owner-section {
+      display: flex;
+
+      .owner-image {
+        width: 3em;
+        height: 3em;
+        object-fit: contain;
+        border-radius: 50%;
+      }
+
+      #text {
+        margin-left: 0.5em;
+      }
+    }
+  }
+}

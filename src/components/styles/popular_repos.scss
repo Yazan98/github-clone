@@ -1,0 +1,43 @@
+
+.popular-repos-container {
+  padding: 3em;
+  color: white;
+
+  ul {
+    list-style-type: none;
+    margin-top: 1em;
+  }
+
+  .title-content {
+    display: flex;
+    place-items: center start;
+    justify-content: space-between;
+
+    .text-content {
+      .error-message {
+        color: red;
+        margin-left: 2em;
+      }
+    }
+
+    .rows-container {
+      display: flex;
+
+      #image {
+        margin-right: 1em;
+        width: 1.2em;
+        height: 1.2em;
+      }
+    }
+
+  }
+
+  .loading-container {
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    place-items: center;
+  }
+}
