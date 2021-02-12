@@ -47,26 +47,26 @@ export const PopularRepositoriesComponent = () => {
                 </div>
             </div>
             {loadingState ? getLoadingContainer() : null}
-            <ul className={isLinearListStyle ? "" : "grid-list"}>
+            <div className={isLinearListStyle ? "linear" : "grid-list"}>
                 {repositories.map((item, index) => {
                     return (
-                        <li key={index}>
-                            <RepositoryCardComponent
-                                createdAt={item.created_at}
-                                description={item.description}
-                                fullName={item.full_name}
-                                issuesCount={item.open_issues}
-                                language={item.language}
-                                name={item.name}
-                                ownerImage={item.owner.avatar_url}
-                                ownerName={item.owner.login}
-                                ownerUrl={item.html_url}
-                                watchers={item.watchers_count}
-                            />
-                        </li>
+                        <RepositoryCardComponent
+                            key={index}
+                            issues={item.open_issues_count}
+                            description={item.description}
+                            fullName={item.full_name}
+                            language={item.language}
+                            name={item.name}
+                            ownerImage={item.owner.avatar_url}
+                            ownerName={item.owner.login}
+                            ownerUrl={item.owner.html_url}
+                            watchers={item.watchers_count}
+                            repoUrl={item.html_url}
+                            isLinearLayout={isLinearListStyle}
+                        />
                     );
                 })}
-            </ul>
+            </div>
         </div>
     );
 }

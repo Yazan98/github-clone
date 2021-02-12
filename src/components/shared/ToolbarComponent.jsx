@@ -28,9 +28,8 @@ export const ToolbarComponent = ({userImageUrl = "" }) => {
                 <div className={"links-side"}>
                     <img className={"image"} src={GithubLogoImage}  alt={"Logo"}/>
                     <div className={"links"}>
-                        <NavLink to={"/pull-requests"} className={"ButtonLink"}>Pull Requests</NavLink>
-                        <NavLink to={"/issues"} className={"ButtonLink"}>Issues</NavLink>
-                        <NavLink to={"/explore"} className={"ButtonLink"}>Explore</NavLink>
+                        <NavLink to={"/"} className={"ButtonLink"}>Popular Repos</NavLink>
+                        <NavLink to={"/profile"} className={"ButtonLink"}>Profile View</NavLink>
                     </div>
                 </div>
                 <div className={"search-item"}>

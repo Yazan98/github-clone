@@ -1,8 +1,10 @@
 .repo-container {
   margin: 1em;
+  width: 30vw;
 
   .paper {
     padding: 1em;
+    height: 250px;
 
     .language-container {
       display: flex;
@@ -38,6 +40,10 @@
           width: 1em;
           margin-right: 0.5em;
         }
+
+        #IssuesIcon {
+          margin-left: 1em;
+        }
       }
     }
 
@@ -48,14 +54,24 @@
       place-items: center center;
       padding-bottom: 1em;
 
-      a {
-        color: white;
-        text-decoration: none;
-      }
-
       p {
         max-width: 100%;
         width: 100%;
+      }
+
+      .links {
+        display: flex;
+
+        a {
+          color: white;
+          text-decoration: none;
+        }
+
+        .icon {
+          width: 1em;
+          height: 1em;
+          margin-right: 0.5em;
+        }
       }
 
       .content {
@@ -63,6 +79,16 @@
         justify-content: space-between;
         justify-items: center;
         place-items: center center;
+
+        #text {
+          max-width: 80%;
+          width: 80%;
+          overflow: hidden;
+          clear: both;
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+        }
 
         .owner-image {
           width: 3em;

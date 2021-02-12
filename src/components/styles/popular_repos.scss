@@ -5,16 +5,21 @@
 
   ul {
     list-style-type: none;
-    margin-top: 1em;
   }
 
   .grid-list {
     width: 100%;
+    grid-auto-columns: max-content;
+    gap: 10px;
+    grid-template-columns: repeat(3, auto);
+    justify-items: center;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(auto-fill, 120px);
-    grid-row-gap: 10px;
-    grid-column-gap: 10px;
+    justify-content: center;
+    margin-top: 2em;
+  }
+
+  .linear {
+    margin-top: 2em;
   }
 
   .title-content {
