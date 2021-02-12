@@ -8,6 +8,15 @@
     margin-top: 1em;
   }
 
+  .grid-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fill, 120px);
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+  }
+
   .title-content {
     display: flex;
     place-items: center start;
@@ -22,6 +31,22 @@
 
     .rows-container {
       display: flex;
+
+      .selected {
+        background: #000000;
+        -moz-border-radius: 70px;
+        -webkit-border-radius: 70px;
+        border-radius: 70px;
+        padding: 10px;
+      }
+
+      .not-selected {
+        background: #333333;
+        -moz-border-radius: 70px;
+        -webkit-border-radius: 70px;
+        border-radius: 70px;
+        padding: 10px;
+      }
 
       #image {
         margin-right: 1em;

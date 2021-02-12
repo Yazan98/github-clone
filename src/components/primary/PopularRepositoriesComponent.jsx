@@ -12,6 +12,7 @@ export const PopularRepositoriesComponent = () => {
     const [pageNumber, updatePageNumber] = useState(1);
     const [loadingState, updateLoadingState] = useState(false);
     const [errorListener, updateErrorListener] = useState("");
+    const [isLinearListStyle, updateListStyle] = useState(true);
 
     useEffect(() => {
         async function fetchPopularPosts() {
@@ -41,22 +42,26 @@ export const PopularRepositoriesComponent = () => {
                     {errorListener ? <p className={"error-message"}>{errorListener}</p> : null}
                 </div>
                 <div className={"rows-container"}>
-                    <img src={GridImage} id={"image"} alt={"Grid Image"} />
-                    <img src={LinearImage} id={"image"} alt={"Grid Image"} />
+                    <img className={isLinearListStyle ? "not-selected" : "selected"} src={GridImage} id={"image"} alt={"Grid Image"} onClick={(e) => {updateListStyle(false)}} />
+                    <img className={isLinearListStyle ? "selected" : "not-selected"} src={LinearImage} id={"image"} alt={"Grid Image"}  onClick={(e) => {updateListStyle(true)}} />
                 </div>
             </div>
             {loadingState ? getLoadingContainer() : null}
-            <ul>
+            <ul className={isLinearListStyle ? "" : "grid-list"}>
                 {repositories.map((item, index) => {
                     return (
                         <li key={index}>
                             <RepositoryCardComponent
                                 createdAt={item.created_at}
-                                description={item.description} fullName={item.full_name}
+                                description={item.description}
+                                fullName={item.full_name}
                                 issuesCount={item.open_issues}
-                                language={item.language} name={item.name}
-                                ownerImage={item.owner.avatar_url} ownerName={item.owner.login}
-                                ownerUrl={item.owner.url} watchers={item.watchers_count}
+                                language={item.language}
+                                name={item.name}
+                                ownerImage={item.owner.avatar_url}
+                                ownerName={item.owner.login}
+                                ownerUrl={item.html_url}
+                                watchers={item.watchers_count}
                             />
                         </li>
                     );
