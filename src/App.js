@@ -1,7 +1,7 @@
 import './App.scss';
 import {HashRouter, Route, Switch} from "react-router-dom";
 import React from "react";
-import HomePage from "./components/pages/HomePage";
+import {HomePage} from "./components/pages/HomePage";
 
 function App() {
   return (

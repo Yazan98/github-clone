@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 import FooterComponent from "../shared/FooterComponent";
 import {ToolbarComponent} from "../shared/ToolbarComponent";
 import {PopularRepositoriesComponent} from "../primary/PopularRepositoriesComponent";
 
-class HomePage extends Component {
-    render() {
-        return (
-            <div className={"homepage-container"}>
-                <ToolbarComponent userImageUrl={"https://www.w3schools.com/w3images/avatar2.png"} />
+export const HomePage = () => {
+    const [searchQuery, setSearchQuery] = React.useState("");
+    const callback = React.useCallback((e) => {
+        setSearchQuery(e)
+        console.log(e)
+    }, [])
 
-                <main>
-                    <PopularRepositoriesComponent />
-                </main>
-
-                <FooterComponent />
-            </div>
-        );
-    }
+    return (
+        <div className={"homepage-container"}>
+            <ToolbarComponent onSearchTextClicked={callback} userImageUrl={"https://www.w3schools.com/w3images/avatar2.png"} />
+            <main>
+                <PopularRepositoriesComponent onSearchQuery={searchQuery} />
+            </main>
+            <FooterComponent />
+        </div>
+    );
 }
-
-export default HomePage;

@@ -7,7 +7,7 @@ import ShopIcon from '../images/shop.svg';
 import '../styles/toolbar_style.scss';
 import SearchIcon from '../images/magnifying-glass.svg';
 
-export const ToolbarComponent = ({userImageUrl = "" }) => {
+export const ToolbarComponent = ({userImageUrl = "", onSearchTextClicked}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [onSearchButtonClicked, setSearchButtonClicked] = useState(false);
 
@@ -15,9 +15,9 @@ export const ToolbarComponent = ({userImageUrl = "" }) => {
         if (onSearchButtonClicked) {
             setSearchButtonClicked(false)
             if (searchTerm) {
-                // Handle ReDirect
+                onSearchTextClicked(searchTerm)
             } else {
-                alert("Search Text Required");
+                onSearchTextClicked("stars")
             }
         }
     }, [searchTerm, onSearchButtonClicked])

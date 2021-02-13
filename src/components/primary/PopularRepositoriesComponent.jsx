@@ -8,7 +8,7 @@ import GridImage from '../images/menu.svg';
 import LinearImage from '../images/list-text.svg';
 import {PageNumberComponent} from "../shared/PageNumberComponent";
 
-export const PopularRepositoriesComponent = () => {
+export const PopularRepositoriesComponent = ({onSearchQuery}) => {
     const [repositories, setRepositories] = useState([RepositoryModelResponse] | undefined);
     const [pageNumber, updatePageNumber] = useState(1);
     const [loadingState, updateLoadingState] = useState(false);
@@ -22,13 +22,11 @@ export const PopularRepositoriesComponent = () => {
     useEffect(() => {
         async function fetchPopularPosts() {
             updateLoadingState(true);
-            let response = await getPopularRepositories(pageNumber);
+            setRepositories(undefined);
+            let response = await getPopularRepositories(pageNumber, onSearchQuery);
             if (response) {
                 updateErrorListener("");
-                console.log("Items : ", response.data.items)
                 setRepositories(response.data.items);
-                console.log(response.data.items)
-                // updatePageNumber(pageNumber + 1);
                 updateLoadingState(false);
             } else {
                 updateErrorListener("Error While Fetching Data");
@@ -37,7 +35,7 @@ export const PopularRepositoriesComponent = () => {
         }
 
         fetchPopularPosts();
-    }, [pageNumber])
+    }, [pageNumber, onSearchQuery])
 
     return (
         <div className={"popular-repos-container"}>

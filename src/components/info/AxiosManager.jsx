@@ -4,7 +4,6 @@ export const BASE_URL = "https://api.github.com/"
 export const TIMEOUT = 3000
 export const DEFAULT_REQUEST_METHOD = 'get'
 export const HAVE_CREDENTIALS = false
-export const SUCCESS_RESPONSE = 200
 
 export const axiosManagerInstance = axios.create({
     baseURL: BASE_URL,
@@ -16,6 +15,9 @@ export const axiosManagerInstance = axios.create({
     }
 })
 
-export async function getPopularRepositories(pageNumber = 1) {
+export async function getPopularRepositories(pageNumber = 1, searchQuery = "") {
+    if (searchQuery) {
+        return await axiosManagerInstance.get(`search/repositories?q=${searchQuery}:%3E1&sort=stars&page=${pageNumber}`)
+    }
     return await axiosManagerInstance.get(`search/repositories?q=stars:%3E1&sort=stars&page=${pageNumber}`)
 }
