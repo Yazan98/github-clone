@@ -1,0 +1,111 @@
+.github-username-container {
+  height: 91vh;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  place-items: center center;
+  text-align: center;
+
+  .container-username {
+    display: block;
+
+    .image {
+      border-radius: 50%;
+      height: 150px;
+      width: 100px;
+
+      .icon {
+        margin-bottom: 5em;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+    }
+
+    #item {
+      width: 100%;
+      margin-top: 1em;
+    }
+  }
+}
+
+.github-profile {
+  width: 100%;
+  color: white;
+
+  .page-container {
+    display: flex;
+    justify-content: center;
+    place-items: center center;
+
+    .profile-view {
+      .profile-content {
+        text-align: center;
+        margin-top: 2em;
+        padding: 2em;
+
+        .profile-image {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 50%;
+          border-color: deepskyblue;
+          border-width: 3px;
+          border-style: solid;
+          padding: 5px;
+        }
+
+        .name-container {
+          margin-top: 1em;
+          text-align: center;
+
+          h1 {
+            color: deepskyblue;
+          }
+        }
+
+        .des {
+          font-style: italic;
+          margin-top: 1em;
+        }
+
+        .icons-container {
+          display: flex;
+          place-items: center center;
+          text-align: center;
+          justify-content: center;
+          margin-top: 1em;
+
+          #item {
+            display: flex;
+            text-align: center;
+            place-items: center center;
+            margin-left: 1em;
+          }
+        }
+
+        .numbers-container {
+          display: flex;
+          place-items: center center;
+          text-align: center;
+          margin-top: 1em;
+          justify-content: center;
+
+          #item {
+            padding: 1em;
+            margin-left: 1em;
+            width: 100px;
+
+            .text {
+              margin-top: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  h3 {
+    margin: 1em;
+  }
+
+}

@@ -99,3 +99,38 @@ export const RepositoryModelResponse = {
     "default_branch": "master",
     "score": 1.0
 }
+
+export const ProfileResponse = {
+    "login": "Yazan98",
+    "id": 29167110,
+    "node_id": "MDQ6VXNlcjI5MTY3MTEw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/29167110?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Yazan98",
+    "html_url": "https://github.com/Yazan98",
+    "followers_url": "https://api.github.com/users/Yazan98/followers",
+    "following_url": "https://api.github.com/users/Yazan98/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Yazan98/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Yazan98/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Yazan98/subscriptions",
+    "organizations_url": "https://api.github.com/users/Yazan98/orgs",
+    "repos_url": "https://api.github.com/users/Yazan98/repos",
+    "events_url": "https://api.github.com/users/Yazan98/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Yazan98/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": "Yazan Tarifi",
+    "company": null,
+    "blog": "www.yazantarifi.com",
+    "location": "Jordan",
+    "email": null,
+    "hireable": true,
+    "bio": "\r\n    Android, Spring Boot Developer \r\nJava, Kotlin, JavaScript, Groovy, React, Typescript, Nest.js\r\n",
+    "twitter_username": null,
+    "public_repos": 26,
+    "public_gists": 6,
+    "followers": 11,
+    "following": 81,
+    "created_at": "2017-06-03T19:47:20Z",
+    "updated_at": "2021-02-13T11:43:16Z"
+}

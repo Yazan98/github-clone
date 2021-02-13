@@ -2,6 +2,7 @@ import './App.scss';
 import {HashRouter, Route, Switch} from "react-router-dom";
 import React from "react";
 import {HomePage} from "./components/pages/HomePage";
+import GithubUsernamePage from "./components/pages/GithubUsernamePage";
 
 function App() {
   return (
@@ -9,8 +10,7 @@ function App() {
       <HashRouter>
         <Switch>
           <Route exact path="/" component={HomePage}/>
-          {/*<Route exact path="/projects" component={ProjectsPageComponent}/>*/}
-          {/*<Route path='*' exact={true} component={NotFoundPageComponent}/>*/}
+          <Route exact path="/profile" component={GithubUsernamePage}/>
         </Switch>
       </HashRouter>
     </div>

@@ -12,7 +12,7 @@ export const HomePage = () => {
 
     return (
         <div className={"homepage-container"}>
-            <ToolbarComponent onSearchTextClicked={callback} userImageUrl={"https://www.w3schools.com/w3images/avatar2.png"} />
+            <ToolbarComponent onSearchTextClicked={callback} shouldShowSearch={true} userImageUrl={"https://www.w3schools.com/w3images/avatar2.png"} />
             <main>
                 <PopularRepositoriesComponent onSearchQuery={searchQuery} />
             </main>

@@ -7,7 +7,7 @@ import ShopIcon from '../images/shop.svg';
 import '../styles/toolbar_style.scss';
 import SearchIcon from '../images/magnifying-glass.svg';
 
-export const ToolbarComponent = ({userImageUrl = "", onSearchTextClicked}) => {
+export const ToolbarComponent = ({userImageUrl = "", onSearchTextClicked, shouldShowSearch}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [onSearchButtonClicked, setSearchButtonClicked] = useState(false);
 
@@ -32,18 +32,24 @@ export const ToolbarComponent = ({userImageUrl = "", onSearchTextClicked}) => {
                         <NavLink to={"/profile"} className={"ButtonLink"}>Profile View</NavLink>
                     </div>
                 </div>
-                <div className={"search-item"}>
-                    <div className={"background-container"}>
-                        <input className={"search"} type={"text"} placeholder={"Search or Jump to"} onChange={(e) => {setSearchTerm(e.target.value)}}/>
-                        <img className={"search-image"} src={SearchIcon} alt={"SearchItem"} onClick={(e) => {setSearchButtonClicked(true)}} />
-                    </div>
-                </div>
+                {shouldShowSearch ? getSearchSection(setSearchTerm, setSearchButtonClicked) : null}
                 <div className={"profile-item"}>
                     {getProfileIconsContainer(userImageUrl.toString())}
                 </div>
             </div>
             <LineDividerComponent />
         </header>
+    );
+}
+
+export function getSearchSection(setSearchTerm, setSearchButtonClicked) {
+    return (
+        <div className={"search-item"}>
+            <div className={"background-container"}>
+                <input className={"search"} type={"text"} placeholder={"Search or Jump to"} onChange={(e) => {setSearchTerm(e.target.value)}}/>
+                <img className={"search-image"} src={SearchIcon} alt={"SearchItem"} onClick={(e) => {setSearchButtonClicked(true)}} />
+            </div>
+        </div>
     );
 }
 

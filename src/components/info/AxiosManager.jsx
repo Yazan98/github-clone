@@ -21,3 +21,8 @@ export async function getPopularRepositories(pageNumber = 1, searchQuery = "") {
     }
     return await axiosManagerInstance.get(`search/repositories?q=stars:%3E1&sort=stars&page=${pageNumber}`)
 }
+
+export async function getProfileView(username) {
+    return await axiosManagerInstance.get(`/users/${username}`)
+}
+
