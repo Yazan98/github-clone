@@ -38,6 +38,19 @@
     place-items: center center;
 
     .profile-view {
+      .repos-view {
+        .grid-list {
+          width: 100%;
+          grid-auto-columns: max-content;
+          gap: 10px;
+          grid-template-columns: repeat(3, auto);
+          justify-items: center;
+          display: grid;
+          justify-content: center;
+          margin-top: 2em;
+        }
+      }
+
       .profile-content {
         text-align: center;
         margin-top: 2em;

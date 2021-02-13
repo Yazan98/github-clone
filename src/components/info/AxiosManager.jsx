@@ -26,3 +26,6 @@ export async function getProfileView(username) {
     return await axiosManagerInstance.get(`/users/${username}`)
 }
 
+export async function getProfileRepositories(username) {
+    return await axiosManagerInstance.get(`/users/${username}/repos`)
+}

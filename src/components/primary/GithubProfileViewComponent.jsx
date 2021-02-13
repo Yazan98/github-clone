@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import {ProfileResponse} from "../info/ModelsResponse";
+import {ProfileResponse, RepositoryModelResponse} from "../info/ModelsResponse";
 import '../styles/username_profile.scss';
-import { getProfileView } from "../info/AxiosManager";
+import {getProfileRepositories, getProfileView} from "../info/AxiosManager";
 import RoomIcon from '@material-ui/icons/Room';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import Paper from "@material-ui/core/Paper";
+import {RepositoryCardComponent} from "./RepositoryCardComponent";
 
 export const GithubProfileViewComponent = ({ username, onProfileImageCallback }) => {
     const [profile, updateProfile] = useState(ProfileResponse | undefined);
+    const [repositories, updateRepositories] = useState([RepositoryModelResponse] | undefined);
     useEffect(() => {
         async function fetchProfileInfo() {
             updateProfile(undefined);
             let response = await getProfileView(username);
-            console.log(response.data);
+            let reposResponse = await getProfileRepositories(username)
             updateProfile(response.data);
+            updateRepositories(reposResponse.data);
+            console.log(reposResponse);
+            onProfileImageCallback(response.data.avatar_url);
         }
 
         fetchProfileInfo();
@@ -25,9 +30,28 @@ export const GithubProfileViewComponent = ({ username, onProfileImageCallback })
             <div className={"page-container"}>
                 <div className={"profile-view"}>
                     {profile ? getProfileViewComponent(profile) : null}
-                </div>
-                <div className={"repos-view"}>
-
+                    <div className={"repos-view"}>
+                        <div className={"grid-list"}>
+                            {repositories ? repositories.map((item, index) => {
+                                return (
+                                    <RepositoryCardComponent
+                                        key={index}
+                                        issues={item.open_issues_count}
+                                        description={item.description}
+                                        fullName={item.full_name}
+                                        language={item.language}
+                                        name={item.name}
+                                        ownerImage={item.owner.avatar_url}
+                                        ownerName={item.owner.login}
+                                        ownerUrl={item.owner.html_url}
+                                        watchers={item.watchers_count}
+                                        repoUrl={item.html_url}
+                                        isLinearLayout={false}
+                                    />
+                                );
+                            }) : null}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
