@@ -1,4 +1,5 @@
 import axios from "axios";
+import {RepositoryModelResponse} from "./ModelsResponse";
 
 export const BASE_URL = "https://api.github.com/"
 export const TIMEOUT = 3000
@@ -11,7 +12,7 @@ export const axiosManagerInstance = axios.create({
     method: DEFAULT_REQUEST_METHOD,
     withCredentials: HAVE_CREDENTIALS,
     headers: {
-       'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
     }
 })
 
@@ -27,5 +28,6 @@ export async function getProfileView(username) {
 }
 
 export async function getProfileRepositories(username) {
-    return await axiosManagerInstance.get(`/users/${username}/repos`)
+    return await axiosManagerInstance.get(`/users/${username}/repos?per_page=100&page=1`)
 }
+

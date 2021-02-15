@@ -4,16 +4,18 @@
 
   .paper {
     padding: 1em;
-    height: 230px;
+    background-color: black;
 
     .paper-body {
 
       .description {
-        overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 3; /* number of lines to show */
         -webkit-box-orient: vertical;
+        line-height: 2.5ex;
+        height: 7.5ex; /* 2.5ex for each visible line */
+        overflow: hidden;
       }
 
       .language-container {

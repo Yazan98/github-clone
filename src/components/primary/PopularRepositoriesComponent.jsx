@@ -13,7 +13,7 @@ export const PopularRepositoriesComponent = ({onSearchQuery}) => {
     const [pageNumber, updatePageNumber] = useState(1);
     const [loadingState, updateLoadingState] = useState(false);
     const [errorListener, updateErrorListener] = useState("");
-    const [isLinearListStyle, updateListStyle] = useState(true);
+    const [isLinearListStyle, updateListStyle] = useState(false);
     const onPageClickCallback = useCallback((numberOfPage) => {
         setRepositories(null)
         updatePageNumber(numberOfPage)

@@ -1,6 +1,6 @@
 import React, {useCallback, useRef} from 'react';
 import '../styles/username_profile.scss';
-import TextField from "@material-ui/core/TextField";
+import FilledInput from '@material-ui/core/FilledInput';
 import Fab from "@material-ui/core/Fab";
 
 export const GithubUsernameEnterComponent = ({onUsernameClicked, dummyProfileImage}) => {
@@ -15,7 +15,7 @@ export const GithubUsernameEnterComponent = ({onUsernameClicked, dummyProfileIma
                 <div className={"image"}>
                     <img id="item" src={dummyProfileImage} className={"icon"} alt={"Username Place Holder"} />
                 </div>
-                <TextField id="item" label="Enter Github Username" margin="normal" fullWidth={true} variant="outlined" inputRef={textChangeRef} />
+                <FilledInput id="item" style={{ color: "white" }} color={"secondary"} placeholder="Enter Github Username" margin="normal" fullWidth={true} inputRef={textChangeRef} />
                 <Fab onClick={() => {onUsernameChanged()}} id="item" variant="extended">Search</Fab>
             </div>
         </div>

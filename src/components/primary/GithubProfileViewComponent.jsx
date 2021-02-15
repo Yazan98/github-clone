@@ -6,6 +6,8 @@ import RoomIcon from '@material-ui/icons/Room';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import Paper from "@material-ui/core/Paper";
 import {RepositoryCardComponent} from "./RepositoryCardComponent";
+import {Bar, Pie} from 'react-chartjs-2';
+import {getColorCodeByLanguage} from "../info/ColorsMapper";
 
 export const GithubProfileViewComponent = ({ username, onProfileImageCallback }) => {
     const [profile, updateProfile] = useState(ProfileResponse | undefined);
@@ -30,6 +32,7 @@ export const GithubProfileViewComponent = ({ username, onProfileImageCallback })
             <div className={"page-container"}>
                 <div className={"profile-view"}>
                     {profile ? getProfileViewComponent(profile) : null}
+                    {repositories ? getChartsViewByRepositories(repositories) : null}
                     <div className={"repos-view"}>
                         <div className={"grid-list"}>
                             {repositories ? repositories.map((item, index) => {
@@ -54,6 +57,97 @@ export const GithubProfileViewComponent = ({ username, onProfileImageCallback })
                     </div>
                 </div>
             </div>
+        </div>
+    );
+}
+
+export function getChartsViewByRepositories(repos = [RepositoryModelResponse]) {
+    let reposNames = []
+    let langaugesNames = []
+    let repositoriesJsonElement = []
+    let langaugesRepositoriesRanked = []
+    let starsRepos = repos.filter((item) => {
+        return item.watchers_count > 0 || item.open_issues_count > 0 || item.forks_count > 0
+    });
+    let newRankedSortArray = starsRepos.sort((a, b) => a.watchers_count - b.open_issues_count)
+
+    for (let i = 0; i < newRankedSortArray.length; i++) {
+        let currentItem = newRankedSortArray[i]
+        reposNames.push(currentItem.full_name)
+        repositoriesJsonElement.push({
+            label: currentItem.full_name,
+            backgroundColor:  getColorCodeByLanguage(currentItem.language),
+            data: [currentItem.watchers_count, currentItem.open_issues_count, currentItem.forks_count]
+        })
+    }
+
+    for (let i = 0; i < repos.length; i++) {
+        let currentItem = repos[i]
+        let savedLanguage = langaugesNames.includes(currentItem.language)
+        if (!savedLanguage && currentItem.language) {
+            langaugesNames.push(currentItem.language)
+        }
+    }
+
+    for (let i = 0; i < langaugesNames.length; i++) {
+        let currentItem = langaugesNames[i]
+        let languagesRepos = repos.filter((item) => {
+            return item.language === currentItem
+        })
+
+        for (let i = 0; i < languagesRepos.length; i++) {
+            langaugesRepositoriesRanked.push({
+                label: currentItem,
+                backgroundColor: getColorCodeByLanguage(languagesRepos[i].language),
+                data: [languagesRepos[i].language, languagesRepos[i].open_issues_count, languagesRepos[i].forks_count]
+            })
+        }
+
+    }
+
+    const state = {
+        labels: reposNames,
+        datasets: repositoriesJsonElement
+    }
+
+    const languagesState = {
+        labels: langaugesNames,
+        datasets: langaugesRepositoriesRanked
+    }
+
+    return (
+        <div className={"charts-container"}>
+            <Bar
+                className={"item"}
+                data={state}
+                options={{
+                    title:{
+                        display:true,
+                        text:'Top Repositories',
+                        fontSize:20
+                    },
+                    legend:{
+                        display:true,
+                        position:'right'
+                    }
+                }}
+            />
+
+            <Pie
+                className={"item"}
+                data={languagesState}
+                options={{
+                    title:{
+                        display:true,
+                        text:'Top Languages',
+                        fontSize:20
+                    },
+                    legend:{
+                        display:true,
+                        position:'right'
+                    }
+                }}
+            />
         </div>
     );
 }

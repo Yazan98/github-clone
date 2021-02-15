@@ -11,7 +11,7 @@ export const RepositoryCardComponent = ({name, fullName, ownerName, ownerImage, 
     const widthSize = isLinearLayout ? 90 : 30
     return (
         <div className={"repo-container"} style={{width: widthSize + "vw"}}>
-            <Paper className={"paper"}>
+            <div className={"paper"} >
                <div className={"paper-body"}>
                    <div className={"owner-section"}>
                        <div className={"content"}>
@@ -42,7 +42,7 @@ export const RepositoryCardComponent = ({name, fullName, ownerName, ownerImage, 
                        </div>
                    </div>
                </div>
-            </Paper>
+            </div>
         </div>
     );
 }
